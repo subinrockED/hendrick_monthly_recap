@@ -62,7 +62,6 @@ if st.button("Run script"):
                     <tr><th>Rank</th><th>Store</th><th>% of Active Teammates</th></tr>
             """
 
-            # Add rows with colors (uncomment and fix once you have store-level data; current laf_table lacks required columns)
             # for _, row in laf_table.iterrows():  # Replace laf_table with store_df
             #     percent = row['Percent_Active'] * 100
             #     color = 'green' if percent > 70 else 'yellow' if percent >= 60 else 'red'
