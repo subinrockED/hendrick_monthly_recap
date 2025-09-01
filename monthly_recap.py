@@ -96,7 +96,7 @@ if st.button("Run script"):
             </body>
             </html>
             """
-            st.markdown(html_body, unsafe_allow_html=True)
+            st.html(html_body)
             
             st.download_button(
                 label="Download Email Contents",
