@@ -33,7 +33,10 @@ if st.button("Run script"):
             month = datetime.now().strftime('%B')
             prev_month = (datetime.now().replace(day=1) - pd.Timedelta(days=1)).strftime('%B')
             standouts = laf_table.sort_values(['Active Days', 'Current Streak (Days)'], ascending=False).head(2)
+            standouts["Employee Name"] = standouts["Employee Name"].str.title()
+            print(standouts)
             least_active = laf_table[laf_table['Active Days'] <= 4]['Employee Name'].tolist()
+            formatted_least_active = [name.title() for name in least_active]
             laf_table.reset_index(drop=True, inplace=True)
 
             total_teammates = len(laf_table)
@@ -94,7 +97,7 @@ if st.button("Run script"):
                 </ul>
                 <h3>Least Active Learners (4 or less learning days in {prev_month}):</h3>
                 <ul>
-                    <li>{', '.join(least_active)}</li>
+                    <li>{', '.join(formatted_least_active)}</li>
                 </ul>
                 <p>If you have any questions or would like my support in driving results for your team please reach out! I'm happy to prescribe content based on your team's challenges, set up personalized learning paths for your store and specific teammates, provide reporting on a monthly basis, etc.</p>
                 <p>Looking forward to a strong {month} ahead!</p>
