@@ -111,7 +111,7 @@ if st.button("Run script"):
             st.download_button(
                 label="Download Email Contents",
                 data=html_body,
-                file_name=f'recap_email_{prev_month}.html',
+                file_name=f'{dealership_name}_{prev_month}_recap.html',
                 mime='text/html'
             )
 
