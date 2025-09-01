@@ -52,6 +52,13 @@ if st.button("Run script"):
 
             html_body = f"""
             <html>
+            <head>
+                <style>
+                    h3 {{
+                        color: rgb(34,122,202);
+                    }}
+                </style> 
+            </head>
             <body>
                 <p>Good Morning {dealership_name},</p>
                 <p>Congratulations on another successful month of learning on RockED. This month's recap is packed with insights — below you'll find standout wins at your store, how you stacked up across the full 17-store leaderboard, as well as one key area of improvement to help keep your team's momentum going in {month}.</p>
