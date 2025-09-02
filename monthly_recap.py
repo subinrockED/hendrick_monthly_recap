@@ -93,7 +93,14 @@ if st.button("Run script"):
                 </body>
                 </html>
                 """
-
+            hide_github_icon = """
+                <style>
+                #GithubIcon {
+                    visibility: hidden;
+                }
+                </style>
+            """
+            st.markdown(hide_github_icon, unsafe_allow_html=True)
             st.html(html_body)
             st.download_button(
                 label="Download Email Contents",
