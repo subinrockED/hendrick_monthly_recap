@@ -2,12 +2,14 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import leaderboard as gl
+import base64
 
 st.title("Monthly-Recap Builder")
 
 learning_activity_file = st.file_uploader('Upload the learning activity report (Excel)')
 tom_report = st.file_uploader('Upload the TOM report (Excel)')
 leaderboard_file = st.file_uploader('Upload the leaderboard report (Excel)') 
+logo_file = st.file_uploader('OPTIONAL: Upload company logo for branding (PNG/JPG recommended)')
 hide_elements = """
 <style>
     header {visibility: hidden;}
@@ -25,6 +27,12 @@ if st.button("Run script"):
             dealership_df = pd.read_excel(learning_activity_file, sheet_name='Report')
             tom_1_df = pd.read_excel(tom_report, sheet_name='Topic 1')
             tom_2_df = pd.read_excel(tom_report, sheet_name='Topic 2')
+            
+            logo_base64 = None 
+            if logo_file:
+                logo_bytes = logo_file.read() 
+                logo_base64 = base64.b64encode(logo_bytes).decode('utf-8')
+                logo_mime = 'image/png' if logo_file.name.lower().endswith('.png') else 'image/jpeg'
 
             laf_headers = dealership_df.iloc[4]
             laf_table = dealership_df.iloc[7:].copy()
@@ -60,10 +68,11 @@ if st.button("Run script"):
             st.write("Leaderboard File:", leaderboard_file.name)
 
             leaderboard_df = gl.load_and_process_data(leaderboard_file)
-            leaderboard_html = gl.generate_html(leaderboard_df, month=prev_month)
+            leaderboard_html = gl.generate_html(leaderboard_df, month=prev_month, logo_mime=logo_mime, logo_base64=logo_base64)
 
             st.subheader("Email Draft")
             subject = f'{prev_month} RockED Recap - {dealership_name}'
+            st.write(f"**Email Subject:** {subject}")
             html_body = f"""
                 <html>
                 <head>
@@ -76,7 +85,7 @@ if st.button("Run script"):
                 <body>
                     <p>Good Morning {dealership_name},</p>
                     <p>Congratulations on another successful month of learning on RockED. This month's recap is packed with insights — below you'll find standout wins at your store, how you stacked up across the full 17-store leaderboard, as well as one key area of improvement to help keep your team's momentum going in {month}.</p>
-                    {leaderboard_html}  <!-- Insert the generated leaderboard HTML here -->
+                    {leaderboard_html}
                     <h3 style="color: #7F27E4;">Area for Improvement - Topic of the Month (ToM)</h3>
                     <ul>
                         <li>Out of {total_teammates} teammates, only {tom_completion} completed last month's ToM, "Higher Profits with Better Teamwork". The {tom_completion} associate{"s" if tom_completion != 1 else ""} who completed this, attributed more than 10 sales to the best practices shared within the content.</li>
@@ -107,7 +116,6 @@ if st.button("Run script"):
                 file_name=f'{dealership_name}_{prev_month}_recap.html',
                 mime='text/html'
             )
-            st.write(f"**Email Subject:** {subject}")
             st.success("Processing complete!")
         except Exception as e:
             st.error(f"Error loading files: {e}")

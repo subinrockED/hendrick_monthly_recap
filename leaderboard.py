@@ -17,7 +17,7 @@ def get_row_color(perc):
     else:
         return '#f8d7da'  
 
-def generate_html(df, month):
+def generate_html(df, month, logo_mime, logo_base64):
     rows = ''
     for _, row in df.iterrows():
         color = get_row_color(row['Percent Active'])
@@ -30,9 +30,8 @@ def generate_html(df, month):
         '''
     html = f'''
     <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 10px; border: 1px solid #ddd; background-color: #fff;">
-    
+        {'<img src="data:' + logo_mime + ';base64,' + logo_base64 + '" alt="Company Logo" style="height: 30px; vertical-align: middle; margin-left: 10px;">' if logo_base64 else ''}
         <h2 style="text-align: center; color: #7F27E4; margin-bottom: 5px; font-size: 18px;">{month} Leaderboard</h2>
-        
         <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
             <thead>
                 <tr style="background-color: #7F27E4; color: #fff; text-align: left;">
