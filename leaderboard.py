@@ -31,11 +31,11 @@ def generate_html(df, month):
     html = f'''
     <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 10px; border: 1px solid #ddd; background-color: #fff;">
     
-        <h2 style="text-align: center; color: #000; margin-bottom: 5px; font-size: 18px;">{month} Leaderboard</h2>
+        <h2 style="text-align: center; color: #7F27E4; margin-bottom: 5px; font-size: 18px;">{month} Leaderboard</h2>
         
         <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
             <thead>
-                <tr style="background-color: #007bff; color: #fff; text-align: left;">
+                <tr style="background-color: #7F27E4; color: #fff; text-align: left;">
                     <th style="padding: 5px; border: 1px solid #ddd;">Rank</th>
                     <th style="padding: 5px; border: 1px solid #ddd;">Store</th>
                     <th style="padding: 5px; border: 1px solid #ddd;">% of Active Teammates</th>
