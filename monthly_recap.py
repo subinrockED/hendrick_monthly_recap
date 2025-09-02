@@ -8,7 +8,14 @@ st.title("Monthly-Recap Builder")
 learning_activity_file = st.file_uploader('Upload the learning activity report (Excel)')
 tom_report = st.file_uploader('Upload the TOM report (Excel)')
 leaderboard_file = st.file_uploader('Upload the leaderboard report (Excel)') 
-
+hide_elements = """
+<style>
+    header {visibility: hidden;}
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_elements, unsafe_allow_html=True)
 if not (learning_activity_file and tom_report and leaderboard_file):
     st.warning("Please upload the learning activity, TOM, and leaderboard reports to proceed.")
 
@@ -93,14 +100,6 @@ if st.button("Run script"):
                 </body>
                 </html>
                 """
-            hide_github_icon = """
-                <style>
-                #GithubIcon {
-                    visibility: hidden;
-                }
-                </style>
-            """
-            st.markdown(hide_github_icon, unsafe_allow_html=True)
             st.html(html_body)
             st.download_button(
                 label="Download Email Contents",
