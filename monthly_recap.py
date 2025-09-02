@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-import leaderboard as gl  # Import your leaderboard module
+import leaderboard as gl
 
 st.title("Monthly-Recap Builder")
 
