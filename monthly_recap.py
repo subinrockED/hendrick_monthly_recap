@@ -7,7 +7,7 @@ st.title("Monthly-Recap Builder")
 
 learning_activity_file = st.file_uploader('Upload the learning activity report (Excel)')
 tom_report = st.file_uploader('Upload the TOM report (Excel)')
-leaderboard_file = st.file_uploader('Upload the leaderboard report (Excel)')  # New upload for leaderboard data
+leaderboard_file = st.file_uploader('Upload the leaderboard report (Excel)') 
 
 if not (learning_activity_file and tom_report and leaderboard_file):
     st.warning("Please upload the learning activity, TOM, and leaderboard reports to proceed.")
@@ -52,7 +52,6 @@ if st.button("Run script"):
             st.write("TOM Report File:", tom_report.name)
             st.write("Leaderboard File:", leaderboard_file.name)
 
-            # Generate the leaderboard HTML
             leaderboard_df = gl.load_and_process_data(leaderboard_file)
             leaderboard_html = gl.generate_html(leaderboard_df, month=prev_month)
 
@@ -91,7 +90,6 @@ if st.button("Run script"):
                     <p>If you have any questions or would like my support in driving results for your team please reach out! I'm happy to prescribe content based on your team's challenges, set up personalized learning paths for your store and specific teammates, provide reporting on a monthly basis, etc.</p>
                     <p>Looking forward to a strong {month} ahead!</p>
                     <p>Best,</p>
-                    <!-- Add your name/signature -->
                 </body>
                 </html>
                 """
@@ -103,8 +101,6 @@ if st.button("Run script"):
                 file_name=f'{dealership_name}_{prev_month}_recap.html',
                 mime='text/html'
             )
-
-            # Optional: Display subject
             st.write(f"**Email Subject:** {subject}")
             st.success("Processing complete!")
         except Exception as e:
