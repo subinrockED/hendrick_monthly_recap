@@ -45,10 +45,6 @@ if st.button("Run script"):
 
             st.write("Learning Activity File:", learning_activity_file.name)
             st.write("TOM Report File:", tom_report.name)
-            st.subheader("Learning Activity Preview")
-            st.dataframe(dealership_df.head())
-            st.subheader("TOM Report Preview")
-            st.dataframe(tom_1_df.head()) 
 
             st.subheader("Email Draft")
             subject = f'{prev_month} RockED Recap - {dealership_name}'
