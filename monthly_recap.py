@@ -77,20 +77,20 @@ if st.button("Run script"):
                     <p>Good Morning {dealership_name},</p>
                     <p>Congratulations on another successful month of learning on RockED. This month's recap is packed with insights — below you'll find standout wins at your store, how you stacked up across the full 17-store leaderboard, as well as one key area of improvement to help keep your team's momentum going in {month}.</p>
                     {leaderboard_html}  <!-- Insert the generated leaderboard HTML here -->
-                    <h3>Area for Improvement - Topic of the Month (ToM)</h3>
+                    <h3 style="color: rgb(34,122,202);">Area for Improvement - Topic of the Month (ToM)</h3>
                     <ul>
                         <li>Out of {total_teammates} teammates, only {tom_completion} completed last month's ToM, "Higher Profits with Better Teamwork". The {tom_completion} associate{"s" if tom_completion != 1 else ""} who completed this, attributed more than 10 sales to the best practices shared within the content.</li>
                         <li>It's clear your team finds value in the ToM when completed, so let's focus our ENTIRE TEAM's efforts here this month to see the best return on our learning.</li>
                         <li>Across H.A.G. we've observed an average of {tom_upsells} upsells/sale per teammate by completing this ToM, which in turn, increases YOUR bottom line.</li>
                     </ul>
-                    <h3>Standout Performers at {dealership_name}:</h3>
+                    <h3 style="color: rgb(34,122,202);">Standout Performers at {dealership_name}:</h3>
                     <ul>
                 """
             for _, row in standouts.iterrows():
                 html_body += f"<li>{row['Employee Name']} - was on RockEd all {row['Active Days']} days of {prev_month}! {row['Employee Name']} boasts the highest streak in-store at {row['Current Streak (Days)']} days, and completed {row['Journeys Completed']} journeys last month</li>"
             html_body += f"""
                     </ul>
-                    <h3>Least Active Learners (4 or less learning days in {prev_month}):</h3>
+                    <h3 style="color: rgb(34,122,202);";>Least Active Learners (4 or less learning days in {prev_month}):</h3>
                     <ul>
                         <li>{', '.join(formatted_least_active)}</li>
                     </ul>
