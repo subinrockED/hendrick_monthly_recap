@@ -1,1 +1,9 @@
 openpyxl
+streamlit
+pandas
+jinja2
+openai
+weasyprint
+xhtml2pdf
+markdown2
+weasyprint
