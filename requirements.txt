@@ -3,6 +3,15 @@ streamlit
 pandas
 jinja2
 openai
+markdown2
+# ReportLab is required for PDF generation. It's pure-Python and widely supported.
+reportlab>=3.6.12,<4.0.0
+
+openpyxl
+streamlit
+pandas
+jinja2
+openai
 weasyprint
 xhtml2pdf
 markdown2
